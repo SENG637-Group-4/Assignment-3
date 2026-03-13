@@ -119,6 +119,49 @@ public class RangeExpandToIncludeTest {
         Range result = Range.expandToInclude(null, Double.NaN);
         assertTrue(result == null || Double.isNaN(result.getLowerBound()) || Double.isNaN(result.getUpperBound()));
     }
+    
+    // Verify that the range expands when the value slightly exceeds the current upper bound
+    @Test
+    public void testExpansionWhenValueMarginallyExceedsUpperLimit() {
+        double value = baseRange.getUpperBound() + 0.00001;
+        Range expandedRange = Range.expandToInclude(baseRange, value);
+
+        assertEquals(baseRange.getLowerBound(), expandedRange.getLowerBound(), 1e-9);
+        assertEquals(value, expandedRange.getUpperBound(), 1e-9);
+    }
+
+    // Verify behaviour when the value is the largest representable double
+    @Test
+    public void testExpansionWithLargestPossibleDoubleValue() {
+        double extremeValue = Double.MAX_VALUE;
+        Range expandedRange = Range.expandToInclude(baseRange, extremeValue);
+
+        assertEquals(baseRange.getLowerBound(), expandedRange.getLowerBound(), 1e-9);
+        assertEquals(extremeValue, expandedRange.getUpperBound(), 1e-9);
+    }
+    
+    // Verify that the lower bound expands when the input value is an extremely large negative number
+    @Test
+    public void testExpansionWithExtremeNegativeDoubleValue() {
+        double extremeNegative = -Double.MAX_VALUE;
+        Range expandedRange = Range.expandToInclude(baseRange, extremeNegative);
+
+        assertEquals(extremeNegative, expandedRange.getLowerBound(), 1e-9);
+        assertEquals(baseRange.getUpperBound(), expandedRange.getUpperBound(), 1e-9);
+    }
+    
+    // Verify behaviour when the value is extremely small but positive
+    @Test
+    public void testExpansionWithSmallestPositiveDouble() {
+        double verySmallValue = Double.MIN_VALUE;
+        Range expandedRange = Range.expandToInclude(baseRange, verySmallValue);
+
+        assertEquals(baseRange.getLowerBound(), expandedRange.getLowerBound(), 1e-9);
+        assertEquals(baseRange.getUpperBound(), expandedRange.getUpperBound(), 1e-9);
+    }
+
+
+
 
     @After
     public void tearDown() throws Exception {

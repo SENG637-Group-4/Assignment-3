@@ -109,6 +109,30 @@ public class RangeIntersectsTest {
     public void testSinglePointAtUpperBound() {
         assertFalse(baseRange.intersects(10, 10));
     }
+    
+    // Test behaviour when the lower bound is NaN using computed values
+    @Test
+    public void testIntersectWithComputedNaNLowerBound() {
+
+        double nanValue = Math.sqrt(-1);   // produces NaN
+        double upperBound = 0.5 + 0.5;
+
+        boolean result = baseRange.intersects(nanValue, upperBound);
+
+        assertFalse("Intersection should be false when lower bound is NaN", result);
+    }
+    
+    // Test behaviour when the upper bound becomes NaN during computation
+    @Test
+    public void testIntersectWithComputedNaNUpperBound() {
+
+        double lowerBound = baseRange.getLowerBound() + 1;
+        double nanValue = Double.NaN * 5;
+
+        boolean result = baseRange.intersects(lowerBound, nanValue);
+
+        assertFalse("Intersection should be false when upper bound is NaN", result);
+    }
 
     @After
     public void tearDown() throws Exception {
