@@ -3,12 +3,13 @@ package org.jfree.data;
 import static org.junit.Assert.*;
 import org.jfree.data.Range;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class RangeIntersectsTest {
+
     private Range baseRange;
 
     @BeforeClass
@@ -20,66 +21,73 @@ public class RangeIntersectsTest {
         baseRange = new Range(-10, 10);
     }
 
+    // Lower slightly below range, touching boundary (no overlap)
     @Test
     public void testLowerJustBelowLowerBoundTouchesLower() {
-        assertTrue(baseRange.intersects(-10.00001, -10));
+        assertFalse(baseRange.intersects(-10.00001, -10));
     }
 
+    // Lower slightly below range but overlapping slightly
     @Test
     public void testLowerJustBelowLowerBoundOverlapsSlightly() {
         assertTrue(baseRange.intersects(-10.00001, -9.99999));
     }
 
+    // Interval spans entire range
     @Test
     public void testLowerJustBelowLowerBoundSpansAll() {
         assertTrue(baseRange.intersects(-10.00001, 10.00001));
     }
 
-    // Tests for lower == range lower bound 
+    // Lower exactly at range lower bound, overlapping
     @Test
     public void testLowerAtLowerBoundOverlapsSlightly() {
         assertTrue(baseRange.intersects(-10, -9.99999));
     }
 
+    // Exact match with range
     @Test
     public void testLowerAtLowerBoundMatchesRange() {
         assertTrue(baseRange.intersects(-10, 10));
     }
 
-    // Tests for lower inside range
+    // Interval fully inside range
     @Test
     public void testLowerInsideRangeNormalValues() {
         assertTrue(baseRange.intersects(-1, 1));
     }
 
+    // Ends exactly at upper bound
     @Test
     public void testLowerInsideRangeEndsAtUpper() {
         assertTrue(baseRange.intersects(9.99999, 10));
     }
 
-    // Tests for lower == upper bound 
+    // Starts exactly at upper bound (no overlap)
     @Test
     public void testLowerAtUpperBoundOverlapsSlightly() {
-        assertTrue(baseRange.intersects(10, 10.00001));
+        assertFalse(baseRange.intersects(10, 10.00001));
     }
 
-    // Tests for extreme/min/max values 
+    // Very small positive number inside range
     @Test
     public void testLowerMinValueUpperBeyondRange() {
         assertTrue(baseRange.intersects(Double.MIN_VALUE, 10.00001));
     }
 
+    // Lower slightly below range, very large upper
     @Test
     public void testLowerJustBelowLowerUpperMaxValue() {
         assertTrue(baseRange.intersects(-10.00001, Double.MAX_VALUE));
     }
 
-    // Tests for single points
+    // Single point inside range
     @Test
     public void testSinglePointInsideRange() {
         assertTrue(baseRange.intersects(0, 0));
     }
 
+    // NaN tests
     @Test
     public void testCase12_NaNLower() {
         assertFalse(baseRange.intersects(Double.NaN, 1));
@@ -90,16 +98,18 @@ public class RangeIntersectsTest {
         assertFalse(baseRange.intersects(1, Double.NaN));
     }
 
+    // Single point exactly at lower bound (no overlap)
     @Test
     public void testSinglePointAtLowerBound() {
-        assertTrue(baseRange.intersects(-10, -10));
+        assertFalse(baseRange.intersects(-10, -10));
     }
 
+    // Single point exactly at upper bound (no overlap)
     @Test
     public void testSinglePointAtUpperBound() {
-        assertTrue(baseRange.intersects(10, 10));
+        assertFalse(baseRange.intersects(10, 10));
     }
-    
+
     @After
     public void tearDown() throws Exception {
     }

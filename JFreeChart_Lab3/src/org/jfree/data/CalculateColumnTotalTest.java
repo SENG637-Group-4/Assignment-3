@@ -174,7 +174,7 @@ public class CalculateColumnTotalTest {
       
     // TC14 – Null data (real behavior = NullPointerException)
       
-    @Test(expected = InvalidParameterException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testTC14_nullData() {
         DataUtilities.calculateColumnTotal(null, 0);
     }

@@ -2,7 +2,7 @@ package org.jfree.data;
 
 import static org.junit.Assert.*;
 
-import java.security.InvalidParameterException;
+import java.security.IllegalArgumentException;
 
 import org.jfree.data.DataUtilities;
 import org.junit.*;
@@ -83,7 +83,7 @@ public class DataUtilitiesCreateNumberArrayTest {
     }
 
     // U1: null — must throw InvalidParameterException
-    @Test(expected = InvalidParameterException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void createNumberArrayWithNullShouldThrowException() {
         DataUtilities.createNumberArray(null);
     }

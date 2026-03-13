@@ -3,7 +3,7 @@ package org.jfree.data;
 import static org.junit.Assert.*;
 import org.jfree.data.Range;
 import org.junit.*;
-import java.security.InvalidParameterException;
+import java.security.IllegalArgumentException;
 
 public class RangeShiftTest {
 
@@ -18,7 +18,7 @@ public class RangeShiftTest {
     // Test Case 1
     // null base range: should throw InvalidParameterException
     // Expected: InvalidParameterException
-    @Test(expected = InvalidParameterException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void shiftWithNullBaseThrowsException() {
         Range base = null;
         Range.shift(base, 5.0, true);

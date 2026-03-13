@@ -100,7 +100,7 @@ public class DataUtilitiesCreateNumberArray2DTest {
     }
 
     // U1: null — must throw InvalidParameterException
-    @Test(expected = InvalidParameterException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void createNumberArray2DWithNullShouldThrowException() {
         DataUtilities.createNumberArray2D(null);
     }

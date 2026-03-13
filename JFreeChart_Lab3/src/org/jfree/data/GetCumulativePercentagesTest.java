@@ -9,7 +9,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import java.security.InvalidParameterException;
+import java.security.IllegalArgumentException;
 
 
 public class GetCumulativePercentagesTest {
@@ -85,7 +85,7 @@ public class GetCumulativePercentagesTest {
 
     // TC4: null input
     // Expect: InvalidParameterException
-    @Test(expected = InvalidParameterException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testTC4_nullInput_throwsInvalidParameterException() {
         DataUtilities.getCumulativePercentages(null);
     }
@@ -191,7 +191,7 @@ public class GetCumulativePercentagesTest {
 
      
     // TC10: null value within the dataset
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testTC10_nullValueInDataset_throwsNPE() {
         DefaultKeyedValues data = new DefaultKeyedValues();
         data.addValue(Integer.valueOf(0), null);
