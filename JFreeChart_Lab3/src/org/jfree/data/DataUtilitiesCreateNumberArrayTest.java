@@ -2,8 +2,6 @@ package org.jfree.data;
 
 import static org.junit.Assert.*;
 
-import java.security.IllegalArgumentException;
-
 import org.jfree.data.DataUtilities;
 import org.junit.*;
 

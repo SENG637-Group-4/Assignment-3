@@ -166,4 +166,62 @@ public class CalculateRowTotalTest {
         double result = DataUtilities.calculateRowTotal(values, 0);
         assertEquals(Double.POSITIVE_INFINITY, result, 0.0);
     }
+    
+	 @Test
+	 public void testTC15_nullCellValue() {
+	     context.checking(new Expectations() {{
+	         allowing(values).getRowCount(); will(returnValue(1));
+	         allowing(values).getColumnCount(); will(returnValue(2));
+	         allowing(values).getValue(0, 0); will(returnValue(null));   // null branch
+	         allowing(values).getValue(0, 1); will(returnValue(3.0));
+	     }});
+	
+	     double result = DataUtilities.calculateRowTotal(values, 0);
+	     assertEquals(3.0, result, 1e-9); // null cell is skipped
+	 }
+	
+	 @Test
+	 public void testTC16_allNullCellValues() {
+	     context.checking(new Expectations() {{
+	         allowing(values).getRowCount(); will(returnValue(1));
+	         allowing(values).getColumnCount(); will(returnValue(2));
+	         allowing(values).getValue(0, 0); will(returnValue(null));   // null branch
+	         allowing(values).getValue(0, 1); will(returnValue(null));   // null branch
+	     }});
+	
+	     double result = DataUtilities.calculateRowTotal(values, 0);
+	     assertEquals(0.0, result, 1e-9); // all nulls skipped, total stays 0
+	 }
+
+	 // ------------------------------------------------------------
+	 // Negative columnCount — forces c2 > columnCount to be TRUE,
+	 // entering the second (dead-code) loop body.
+	 // Covers both the loop-entered branch AND the inner if (n != null)
+	 // true and false branches.
+	 // ------------------------------------------------------------
+	 @Test
+	 public void testTC17_negativeColumnCount_nonNullValue() {
+	     context.checking(new Expectations() {{
+	         allowing(values).getRowCount();    will(returnValue(1));
+	         allowing(values).getColumnCount(); will(returnValue(-1)); // makes c2(0) > columnCount(-1) TRUE
+	         allowing(values).getValue(0, 0);   will(returnValue(5.0)); // non-null: covers inner if == true
+	     }});
+	
+	     // The first loop (c < -1) never executes.
+	     // The second loop (c2 > -1, starting at 0) executes at least once.
+	     double result = DataUtilities.calculateRowTotal(values, 0);
+	     assertEquals(5.0, result, 1e-9);
+	 }
+	
+	 @Test
+	 public void testTC18_negativeColumnCount_nullValue() {
+	     context.checking(new Expectations() {{
+	         allowing(values).getRowCount();    will(returnValue(1));
+	         allowing(values).getColumnCount(); will(returnValue(-1)); // makes c2(0) > columnCount(-1) TRUE
+	         allowing(values).getValue(0, 0);   will(returnValue(null)); // null: covers inner if == false
+	     }});
+	
+	     double result = DataUtilities.calculateRowTotal(values, 0);
+	     assertEquals(0.0, result, 1e-9); // null skipped, total stays 0
+	 }
 }
