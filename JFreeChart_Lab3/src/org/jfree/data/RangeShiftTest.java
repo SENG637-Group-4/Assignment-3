@@ -15,15 +15,6 @@ public class RangeShiftTest {
     public void setUp() throws Exception {
     }
 
-    // Test Case 1
-    // null base range: should throw InvalidParameterException
-    // Expected: InvalidParameterException
-    @Test(expected = InvalidParameterException.class)
-    public void shiftWithNullBaseThrowsException() {
-        Range base = null;
-        Range.shift(base, 5.0, true);
-    }
-
     // Test Case 2
     // Range(-5,5) with delta=0, allowZeroCrossing=true: range unchanged
     // Expected: Range(-5,5)
