@@ -30,15 +30,15 @@ For methods that did not satisfy the required coverage thresholds, we carefully 
 
 After adding each new test case, we reran the coverage analysis to observe whether the coverage metrics improved. This iterative process continued until satisfactory coverage was achieved. The same procedure was repeated for all relevant methods to ensure that the coverage requirements were met.
 
-# 4 A high level description of five selected test cases you have designed using coverage information, and how they have increased code coverage
+# 5. A high level description of five selected test cases you have designed using coverage information, and how they have increased code coverage
+
+
+
+# 6. A detailed report of the coverage achieved of each class and method (a screen shot from the code cover results in green and red color would suffice)
 
 Text…
 
-# 5 A detailed report of the coverage achieved of each class and method (a screen shot from the code cover results in green and red color would suffice)
-
-Text…
-
-# 6 Pros and Cons of coverage tools used and Metrics you report
+# 7. Pros and Cons of coverage tools used and Metrics you report
 
 In this report, we used **EclEmma** to measure and report the coverage metrics. EclEmma supports instruction coverage, branch coverage, method coverage, and line coverage. However, it does not provide support for condition coverage.
 
@@ -56,7 +56,7 @@ Next, we explored **JaCoCo** by reviewing its official documentation and several
 
 We haven't tried Clover and Cobertura. 
 
-# 7 A comparison on the advantages and disadvantages of requirements-based test generation and coverage-based test generation.
+# 8. A comparison on the advantages and disadvantages of requirements-based test generation and coverage-based test generation.
 
 | Aspect                     | Requirements-Based Test Generation                    | Coverage-Based Test Generation                                  |
 | -------------------------- | ----------------------------------------------------- | --------------------------------------------------------------- |
@@ -103,6 +103,6 @@ The table below summarizes how the test suite development were distributed among
 
 * EclEmma's integration with Eclipse made executing coverage tasks straightforward.
 
-* We gained a clear understanding of data-flow coverage.
+* We got an understanding of how data-flow coverage works
 
-* The assignment instructions were detailed and easy to follow.
+* The assignment description document is detailed and comprehensive, and it was easy to follow.

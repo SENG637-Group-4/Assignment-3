@@ -259,7 +259,30 @@ public class GetCumulativePercentagesTest {
         assertEquals("Key 0 cumulative % should be ≈ 1.0", 1.0, v0, 1e-10);
         assertEquals("Key 1 cumulative % should be 1.0",   1.0, v1, DELTA);
     }
-
+    
+	 // TC14: Dataset containing a null value that should be skipped in total calculation
+	 // Input: {0→5, 1→null, 2→5}
+	 // Expected behaviour: total = 10 (null skipped)
+	 // cumulative: {0→0.5, 1→0.5, 2→1.0}
+	 @Test
+	 public void testTC14_nullValueSkippedInTotal() {
+	
+	     DefaultKeyedValues data = new DefaultKeyedValues();
+	     data.addValue(Integer.valueOf(0), 5.0);
+	     data.addValue(Integer.valueOf(1), null);   // triggers v == null branch
+	     data.addValue(Integer.valueOf(2), 5.0);
+	
+	     KeyedValues result = DataUtilities.getCumulativePercentages(data);
+	
+	     assertEquals(3, result.getItemCount());
+	
+	     assertEquals(0.5, result.getValue(Integer.valueOf(0)).doubleValue(), DELTA);
+	
+	     // cumulative should not change because value is null
+	     assertEquals(0.5, result.getValue(Integer.valueOf(1)).doubleValue(), DELTA);
+	
+	     assertEquals(1.0, result.getValue(Integer.valueOf(2)).doubleValue(), DELTA);
+	 }
     
     @After
     public void tearDown() throws Exception {
