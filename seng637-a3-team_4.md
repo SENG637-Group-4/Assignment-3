@@ -18,7 +18,105 @@ This assignment focuses on improving test coverage (white-box coverage criteria)
 
 # 2 Manual data-flow coverage calculations for X and Y methods
 
-Text…
+## DataUtilities.calculateColumnTotal(Values2D data, int column)
+
+### data flow graph
+![Manual coverage - 1](images/DataUtilities.calculateColumnTotal(Values2D%20data,%20int%20column).drawio.png)
+
+### def-use sets per statement
+
+| Node | Statement | def | c-use | p-use |
+|------|-----------|-----|-------|-------|
+| 1 | `public static double calculateColumnTotal(Values2D data, int column)` | { data, column } | { } | { } |
+| 2 | `ParamChecks.nullNotPermitted(data, "data")` | { } | { data } | { } |
+| 3 | `double total = 0.0; int rowCount = data.getRowCount()` | { total, rowCount } | { data } | { } |
+| 4 | `int r = 0; r < rowCount` | { r } | { } | { r, rowCount } |
+| 5 | `Number n = data.getValue(r, column)` | { n } | { data, r, column } | { n } |
+| 6 | `total += n.doubleValue()` | { total } | { total, n } | { } |
+| 7 | `r++` | { r } | { r } | { } |
+| 8 | `int r2 = 0; r2 > rowCount` | { r2 } | { } | { r2, rowCount } |
+| 9 | `Number n = data.getValue(r2, column)` | { n } | { data, r2, column } | { n } |
+| 10 | `total += n.doubleValue()` | { total } | { total, n } | { } |
+| 11 | `r2++` | { r2 } | { r2 } | { } |
+| 12 | `return total` | { } | { total } | { } |
+
+
+### DU-pairs per variable
+| Variable | DU-pairs |
+|----------|----------|
+| data | (1,2), (1,3), (1,5), (1,9) |
+| column | (1,5), (1,9) |
+| total | (3,6), (3,10), (3,12), (6,6), (6,10), (6,12), (10,6), (10,10), (10,12) |
+| rowCount | (3,4), (3,8) |
+| r | (4,4), (4,5), (4,7), (7,4), (7,5), (7,7) |
+| r2 | (8,8), (8,9), (8,11), (11,8), (11,9), (11,11) |
+| n | (5,5), (5,6), (9,9), (9,10) |
+
+### Pairs covered for each test case
+| Test Case | DU-pairs Covered |
+|-----------|------------------|
+| TC1 | (1,2) (1,3) (1,5) (3,4) (3,6) (3,12) (6,6) (6,12) (4,4) (4,5) (4,7) (7,4) (7,5) (7,7) (5,5) (5,6) |
+| TC2 | (1,2) (1,3) (1,5) (3,4) (3,6) (3,12) (6,6) (6,12) (4,4) (4,5) (4,7) (7,4) (7,5) (7,7) (5,5) (5,6) |
+| TC3 | (1,2) (1,3) (1,5) (3,4) (3,6) (3,12) (6,6) (6,12) (4,4) (4,5) (4,7) (7,4) (7,5) (7,7) (5,5) (5,6) |
+| TC5 | (1,2) (1,3) (1,5) (3,4) (3,6) (3,12) (6,12) (4,4) (4,5) (4,7) (5,5) (5,6) |
+| TC6 | (1,2) (1,3) (1,5) (3,4) (3,6) (3,12) (6,6) (6,12) (4,4) (4,5) (4,7) (7,4) (7,5) (7,7) (5,5) (5,6) |
+| TC7 | (1,2) (1,3) (3,4) (3,12) (4,4) |
+| TC8 | (1,2) (1,3) (1,5) (3,4) (3,12) (4,4) (4,5) (4,7) (7,4) (7,5) (7,7) (5,5) |
+| TC9 | (1,2) (1,3) (1,5) (3,4) (3,6) (3,12) (6,12) (4,4) (4,5) (4,7) (7,4) (7,5) (7,7) (5,5) (5,6) |
+| TC10 | (1,2) (1,3) (1,5) (3,4) (3,6) (3,12) (6,6) (6,12) (4,4) (4,5) (4,7) (7,4) (7,5) (7,7) (5,5) (5,6) |
+| TC12 | (1,2) (1,3) (1,5) (3,4) (3,6) (3,12) (6,6) (6,12) (4,4) (4,5) (4,7) (7,4) (7,5) (7,7) (5,5) (5,6) |
+| TC14 | (1,2) |
+| TC_NEG1 | (1,2) (1,3) (1,9) (3,4) (3,8) (3,10) (10,12) (4,4) (8,8) (8,9) (8,11) (11,8) (11,9) (11,11) (9,9) (9,10) |
+| TC_NEG2 | (1,2) (1,3) (1,9) (3,4) (3,8) (3,12) (4,4) (8,8) (8,9) (8,11) (11,8) (11,9) (11,11) (9,9) |
+
+## Range.intersects(double b0, double b1)
+
+### data flow graph
+![Manual coverage - 2](images/intersects.drawio.png)
+
+### def-use sets per statement
+
+| Node | Statement | def | c-use | p-use |
+|------|-----------|-----|-------|-------|
+| 1 | `public boolean intersects(double b0, double b1)` | { b0, b1 } | { } | { } |
+| 2 | `if (b0 <= this.lower)` | { } | { } | { b0, this.lower } |
+| 3 | `return (b1 > this.lower)` | { } | { } | { b0, this.lower } |
+| 4 | `return false` | { } | { } | { } |
+| 5 | `b0 < this.upper` | { } | { } | { b0, this.upper } |
+| 6 | `b1 >= b0` | { } | { } | { b0, b1 } |
+| 7 | `return false` | { } | { } | { } |
+
+### DU-pairs per variable
+
+| Variable | DU-pairs |
+|----------|----------|
+| b0 | (1,2), (1,3), (1,5), (1,6) |
+| b1 | (1,3), (1,6) |
+| this.lower | (2,2), (2,3) |
+| this.upper | (5,5) |
+
+### Pairs covered for each test case
+
+| Test Case | DU-pairs Covered |
+|-----------|------------------|
+| testLowerJustBelowLowerBoundTouchesLower | (1,2) (1,3) (2,2) (2,3) |
+| testLowerJustBelowLowerBoundOverlapsSlightly | (1,2) (1,3) (2,2) (2,3) |
+| testLowerJustBelowLowerBoundSpansAll | (1,2) (1,3) (2,2) (2,3) |
+| testLowerAtLowerBoundOverlapsSlightly | (1,2) (1,3) (2,2) (2,3) |
+| testLowerAtLowerBoundMatchesRange | (1,2) (1,3) (2,2) (2,3) |
+| testLowerInsideRangeNormalValues | (1,2) (1,5) (1,6) (2,2) |
+| testLowerInsideRangeEndsAtUpper | (1,2) (1,5) (1,6) (2,2) |
+| testLowerAtUpperBoundOverlapsSlightly | (1,2) (1,5) (1,6) (2,2) |
+| testLowerMinValueUpperBeyondRange | (1,2) (1,5) (1,6) (2,2) |
+| testLowerJustBelowLowerUpperMaxValue | (1,2) (1,3) (2,2) (2,3) |
+| testSinglePointInsideRange | (1,2) (1,5) (1,6) (2,2) |
+| testCase12_NaNLower | (1,2) (1,5) (1,7) (2,2) |
+| testLowerInsideUpperNaN | (1,2) (1,5) (1,6) (2,2) |
+| testSinglePointAtLowerBound | (1,2) (1,3) (2,2) (2,3) |
+| testSinglePointAtUpperBound | (1,2) (1,5) (1,6) (2,2) |
+| testIntersectWithComputedNaNLowerBound | (1,2) (1,5) (1,7) (2,2) |
+| testIntersectWithComputedNaNUpperBound | (1,2) (1,5) (1,6) (2,2) |
+
 
 # 3 A detailed description of the testing strategy for the new unit test
 
