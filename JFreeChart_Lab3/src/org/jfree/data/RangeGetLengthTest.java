@@ -1,6 +1,7 @@
 package org.jfree.data;
 
 import static org.junit.Assert.*;
+import java.lang.reflect.Field;
 import org.jfree.data.Range;
 import org.junit.*;
 
@@ -94,6 +95,27 @@ public class RangeGetLengthTest {
         Range range = new Range(0.0001, 1.0);
         assertEquals("Range(0.0001, 1.0) length should be 0.9999",
                 0.9999, range.getLength(), .000000001d);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetLengthThrowsExceptionWhenLowerGreaterThanUpper() throws Exception {
+
+        // create a valid Range first
+        Range r = new Range(1.0, 5.0);
+
+        // use reflection to break the invariant
+        Field lowerField = Range.class.getDeclaredField("lower");
+        Field upperField = Range.class.getDeclaredField("upper");
+
+        lowerField.setAccessible(true);
+        upperField.setAccessible(true);
+
+        // force lower > upper
+        lowerField.set(r, 10.0);
+        upperField.set(r, 5.0);
+
+        // now call method
+        r.getLength();
     }
 
     @After
