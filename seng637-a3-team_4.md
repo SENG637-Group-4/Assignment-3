@@ -103,6 +103,6 @@ The table below summarizes how the test suite development were distributed among
 
 * EclEmma's integration with Eclipse made executing coverage tasks straightforward.
 
-* We got an understanding of how data-flow coverage works
+* We gained a clear understanding of data-flow coverage.
 
-* The assignment description document is detailed and comprehensive, and it was easy to follow.
+* The assignment instructions were detailed and easy to follow.
