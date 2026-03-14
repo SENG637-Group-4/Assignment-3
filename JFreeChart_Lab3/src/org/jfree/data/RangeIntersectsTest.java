@@ -133,6 +133,8 @@ public class RangeIntersectsTest {
 
         assertFalse("Intersection should be false when upper bound is NaN", result);
     }
+    
+    
 
     @After
     public void tearDown() throws Exception {
