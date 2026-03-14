@@ -64,9 +64,9 @@ Method coverage of DataUtilities class
 ![1](images/METHOD_DATA.png)
 
 
-# 3. Manual data-flow coverage calculations for X and Y methods
+# 3. Manual data-flow coverage calculations for DataUtilities.calculateColumnTotal and Range.intersects methods
 
-## DataUtilities.calculateColumnTotal(Values2D data, int column)
+## 3.1 DataUtilities.calculateColumnTotal(Values2D data, int column)
 
 ### data flow graph
 ![Manual coverage - 1](images/DataUtilities.calculateColumnTotal(Values2D%20data,%20int%20column).drawio.png)
@@ -117,7 +117,7 @@ Method coverage of DataUtilities class
 | TC_NEG1 | (1,2) (1,3) (1,9) (3,4) (3,8) (3,10) (10,12) (4,4) (8,8) (8,9) (8,11) (11,8) (11,9) (11,11) (9,9) (9,10) |
 | TC_NEG2 | (1,2) (1,3) (1,9) (3,4) (3,8) (3,12) (4,4) (8,8) (8,9) (8,11) (11,8) (11,9) (11,11) (9,9) |
 
-## Range.intersects(double b0, double b1)
+## 3.2 Range.intersects(double b0, double b1)
 
 ### data flow graph
 ![Manual coverage - 2](images/intersects.drawio.png)
@@ -166,7 +166,7 @@ Method coverage of DataUtilities class
 | testIntersectWithComputedNaNUpperBound | (1,2) (1,5) (1,6) (2,2) |
 
 
-# 4. A detailed description of the testing strategy for the new unit test
+# 4. Description of the testing strategy for the new unit test
 
 To create additional unit tests, we followed a systematic approach.
 
@@ -176,7 +176,7 @@ For methods that did not satisfy the required coverage thresholds, we carefully 
 
 After adding each new test case, we reran the coverage analysis to observe whether the coverage metrics improved. This iterative process continued until satisfactory coverage was achieved. The same procedure was repeated for all relevant methods to ensure that the coverage requirements were met.
 
-# 5. A high level description of five selected example test cases that have designed using coverage information, and how they have increased code coverage
+# 5. Description of five selected example test cases that have designed using coverage information, and how they have increased code coverage
 
 ## 5.1. Range.intersect(double lower, double upper)
 
