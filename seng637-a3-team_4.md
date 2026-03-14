@@ -405,6 +405,34 @@ With the addition of this test case, we see improvements in all coverage counter
 
 # 6. Code cover results in green and red color for Range and DataUtilities class after the improvement
 
+## Coverage of `Range` class - AFTER NEW TESTS
+
+Branch coverage of Range class
+
+![1](images/BRANCH_RANGE_AFTER.png)
+
+Line coverage of Range class
+
+![1](images/lINE_RANGE_AFTER.png)
+
+Method coverage of Range class
+
+![1](images/METHOD_RANGE_AFTER.png)
+
+
+## Coverage of `DataUtilities` class - AFTER NEW TESTS
+
+Branch coverage of DataUtilities class
+
+![1](images/BRANCH_DATA_AFTER.png)
+
+Line coverage of DataUtilities class
+
+![1](images/LINE_DATA_AFTER.png)
+
+Method coverage of DataUtilities class
+
+![1](images/METHOD_DATA_AFTER.png)
 
 
 # 7. Pros and Cons of coverage tools used and Metrics you report
