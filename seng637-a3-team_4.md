@@ -76,7 +76,7 @@ For methods that did not satisfy the required coverage thresholds, we carefully 
 
 After adding each new test case, we reran the coverage analysis to observe whether the coverage metrics improved. This iterative process continued until satisfactory coverage was achieved. The same procedure was repeated for all relevant methods to ensure that the coverage requirements were met.
 
-# 5. A high level description of five selected test cases that have designed using coverage information, and how they have increased code coverage
+# 5. A high level description of five selected example test cases that have designed using coverage information, and how they have increased code coverage
 
 ## 5.1. Range.intersect(double lower, double upper)
 
@@ -403,9 +403,9 @@ With the addition of this test case, we see improvements in all coverage counter
 
 
 
-# 6. A detailed report of the coverage achieved of each class and method (a screen shot from the code cover results in green and red color would suffice)
+# 6. Code cover results in green and red color for Range and DataUtilities class after the improvement
 
-Text…
+
 
 # 7. Pros and Cons of coverage tools used and Metrics you report
 
@@ -437,7 +437,7 @@ We haven't tried Clover and Cobertura.
 | **Dependency**             | Depends on the quality of requirements.               | Depends on program structure and coverage criteria.             |
 
 
-# 8. A discussion on how the team work/effort was divided and managed
+# 9. A discussion on how the team work/effort was divided and managed
 
 ### Measure Data Flow Coverage Manually
 For this task, Zohara and Shuvam worked on DataUtilities.calculateColumnTotal, and Minh and Thanoshan worked on Range.intersects. After the two pairs finished the work, we reviewed each other's work.
@@ -458,7 +458,7 @@ The table below summarizes how the test suite development were distributed among
 | `DataUtilities.calculateRowTotal(Values2D data, int row)` | Zohara |
 | `DataUtilities.getCumulativePercentages(KeyedValues data)` | Minh |
 
-# 9. Any difficulties encountered, challenges overcome, and lessons learned from performing the lab
+# 10. Any difficulties encountered, challenges overcome, and lessons learned from performing the lab
 
 * We had difficulties in installing other code coverage tools. We tried various approaches by looking through multiple webpages, but unfortunately we couldn't run them in our Eclipse project.
 
@@ -466,7 +466,7 @@ The table below summarizes how the test suite development were distributed among
 
 * We found that some methods have dead code (for example, loops), and infinite loops. Through this process, we learned that achieving high coverage is not always straightforward and often requires a detailed understanding of the underlying implementation.
 
-# 10. Comments/feedback on the lab itself
+# 11. Comments/feedback on the lab itself
 
 * This assignment provided valuable experience in using code coverage tools, analyzing their metrics, writing new test cases, and improving overall test coverage.
 
