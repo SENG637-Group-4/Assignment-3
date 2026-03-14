@@ -1,6 +1,6 @@
-**SENG 637 - Dependability and Reliability of Software Systems**
+# SENG 637 - Dependability and Reliability of Software Systems
 
-**Lab. Report #3 – Code Coverage, Adequacy Criteria and Test Case Correlation**
+## Lab. Report #3 – Code Coverage, Adequacy Criteria and Test Case Correlation
 
 | Group 4      |
 |-----------------|
@@ -11,10 +11,26 @@
 
 # Table of Contents
 
+- [Introduction](#1-introduction)
+- [Coverage screenshots of each class and method (Measure Control Flow Coverage)](#2-coverage-screenshots-of-each-class-and-method-measure-control-flow-coverage)
+- [Manual data-flow coverage calculations for X and Y methods](#3-manual-data-flow-coverage-calculations-for-x-and-y-methods)
+- [A detailed description of the testing strategy for the new unit test](#4-a-detailed-description-of-the-testing-strategy-for-the-new-unit-test)
+- [A high level description of five selected example test cases that have designed using coverage information, and how they have increased code coverage](#5-a-high-level-description-of-five-selected-example-test-cases-that-have-designed-using-coverage-information-and-how-they-have-increased-code-coverage)
+- [Code cover results in green and red color for Range and DataUtilities class after the improvement](#6-code-cover-results-in-green-and-red-color-for-range-and-datautilities-class-after-the-improvement)
+- [Pros and Cons of coverage tools used and Metrics you report](#7-pros-and-cons-of-coverage-tools-used-and-metrics-you-report)
+- [A comparison on the advantages and disadvantages of requirements-based test generation and coverage-based test generation](#8-a-comparison-on-the-advantages-and-disadvantages-of-requirements-based-test-generation-and-coverage-based-test-generation)
+- [A discussion on how the team work/effort was divided and managed](#9-a-discussion-on-how-the-team-workeffort-was-divided-and-managed)
+- [Any difficulties encountered, challenges overcome, and lessons learned from performing the lab](#10-any-difficulties-encountered-challenges-overcome-and-lessons-learned-from-performing-the-lab)
+- [Comments/feedback on the lab itself](#11-commentsfeedback-on-the-lab-itself)
+
 
 # 1. Introduction
 
 This assignment focuses on improving test coverage (white-box coverage criteria) two different classes: `org.jfree.data.Range` and `org.jfree.data.DataUtilities`, using testing tools such as EclEmma, CodeCover, and JaCoCo.
+
+We will explore coverage tools and its involvement in software testing. We will first explore the different coverage tools that is suggested for analyzing coverage metrics, and then we will be looking at analyzing coverage manually.
+
+Lastly, we will look at how to use the coverage tool (EclEmma) to help us improve the test cases that we have developed in Assignment 2.
 
 # 2. Coverage screenshots of each class and method (Measure Control Flow Coverage)
 
@@ -32,13 +48,6 @@ Method coverage of Range class
 
 ![1](images/METHOD_RANGE.png)
 
-## Coverage of `Range` class - AFTER NEW TESTS
-
-Branch coverage of Range class
-
-Line coverage of Range class
-
-Method coverage of Range class
 
 ## Coverage of `DataUtilities` class - BEFORE
 
@@ -54,13 +63,6 @@ Method coverage of DataUtilities class
 
 ![1](images/METHOD_DATA.png)
 
-## Coverage of `DataUtilities` class - AFTER NEW TESTS
-
-Branch coverage of DataUtilities class
-
-Line coverage of DataUtilities class
-
-Method coverage of DataUtilities class
 
 # 3. Manual data-flow coverage calculations for X and Y methods
 
@@ -405,6 +407,10 @@ With the addition of this test case, we see improvements in all coverage counter
 
 # 6. Code cover results in green and red color for Range and DataUtilities class after the improvement
 
+We always want to learn more about software testing, so we tried to test as many methods as we could in the two classes.
+
+Thank you for this lab because it helped us explore the methods in detail and learn a lot of useful knowledge.
+
 ## Coverage of `Range` class - AFTER NEW TESTS
 
 Branch coverage of Range class
@@ -413,7 +419,7 @@ Branch coverage of Range class
 
 Line coverage of Range class
 
-![1](images/lINE_RANGE_AFTER.png)
+![1](images/LINE_RANGE_AFTER.png)
 
 Method coverage of Range class
 
@@ -494,9 +500,15 @@ The table below summarizes how the test suite development were distributed among
 
 * We found that some methods have dead code (for example, loops), and infinite loops. Through this process, we learned that achieving high coverage is not always straightforward and often requires a detailed understanding of the underlying implementation.
 
+* Coverage is a really good tool to analyze what is missing in the test case, but as mentioned in the disadvantages, this only tests whether the test would cover all aspects of code, but does not look at the requirements itself.
+
+* We believe that, both requirements base and coverage base tests are equally important in software testing.
+
 # 11. Comments/feedback on the lab itself
 
 * This assignment provided valuable experience in using code coverage tools, analyzing their metrics, writing new test cases, and improving overall test coverage.
+  
+* This assignment gave us a chance to review our assignment 2 work and see how well we did with black box testing.
 
 * EclEmma's integration with Eclipse made executing coverage tasks straightforward.
 
