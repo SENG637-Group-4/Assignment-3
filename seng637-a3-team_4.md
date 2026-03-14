@@ -76,7 +76,7 @@ For methods that did not satisfy the required coverage thresholds, we carefully 
 
 After adding each new test case, we reran the coverage analysis to observe whether the coverage metrics improved. This iterative process continued until satisfactory coverage was achieved. The same procedure was repeated for all relevant methods to ensure that the coverage requirements were met.
 
-# 5. A high level description of five selected test cases you have designed using coverage information, and how they have increased code coverage
+# 5. A high level description of five selected test cases that have designed using coverage information, and how they have increased code coverage
 
 ## 5.1. Range.intersect(double lower, double upper)
 
